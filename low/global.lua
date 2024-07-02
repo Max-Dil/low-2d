@@ -1,0 +1,6 @@
+device = require 'low.Core.Modules.devace'
+graphics = require 'low.Core.Modules.graphics'
+scene = require 'low.Core.Modules.scene'
+event = require 'low.Core.Modules.event'
+loop = require 'low.Core.Modules.loop'
+notification = require 'low.Core.Modules.notification'
