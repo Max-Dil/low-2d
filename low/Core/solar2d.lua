@@ -1,19 +1,6 @@
 local M = {}
 
-M._solar2d = {
-    io = io,
-    os = os,
-    timer = timer,
-    native = native,
-    display = display,
-    widget = require 'widget',
-    audio = audio,
-    composer = require 'composer',
-    system = system,
-    physics = physics,
-    network = network,
-    socket = socket
-}
+_G.display = _G.display
 
 M.print = print
 M.require = require
@@ -42,5 +29,16 @@ M.system = system
 M.table = table
 M.json = require 'low.Core.Plugins.json'
 M.socket = require 'socket'
+M.audio = audio
+M.low = {}
+M.getmetatable = getmetatable
+M.pairs = pairs
+
+M.s2d = {
+    display = _G.display,
+    timer = _G.timer,
+    system = _G.system,
+    audio = _G.audio
+}
 
 return M

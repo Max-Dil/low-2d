@@ -1,4 +1,4 @@
-device = require 'low.Core.Modules.devace'
+device = require 'low.Core.Modules.device'
 graphics = require 'low.Core.Modules.graphics'
 scene = require 'low.Core.Modules.scene'
 event = require 'low.Core.Modules.event'

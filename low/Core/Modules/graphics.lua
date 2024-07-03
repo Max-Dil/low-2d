@@ -49,10 +49,39 @@ M.rect = function (group , render , x , y , width , height , round)
 end
 
 M.image = function (group , image , basedir , x , y)
-    
+    if M.isGroup(group) == false then
+        if type(basedir) == 'string'  then
+            group , image , basedir , x , y = low._SCENES[low._SCENES['_select']].group, group , image , basedir or 0 , x or 0
+        else
+            group , image , x , y = low._SCENES[low._SCENES['_select']].group, group , image or 0 , basedir or 0
+        end
+    else
+        if type(basedir) == 'string' then
+            group , image , basedir , x , y = group , image , basedir , x or 0 , y or 0
+        else
+            group , image , x , y = group , image , basedir or 0 , x or 0
+        end
+    end
+
+    local object
+    if type(basedir) == 'string' then
+        object = display.newImage(group , image , basedir , x , y)
+    else
+        object = display.newImage(group , image , x , y)
+    end
+    object.low = {}
+    object.low.type = 'image'
+    return object
 end
 
 M.set = {
+    image = function (object , image , basedir)
+        if basedir then
+            object.fill = {type = 'image' , filename = image , basedir = basedir}
+        else
+            object.fill = {type = 'image' , filename = image}
+        end
+    end,
     color = function (obj , r , g , b , a )
         if obj then
         if obj.low.renderType == 'fill' then
@@ -147,6 +176,6 @@ M.setHeight = M.set.height
 M.setSize = M.set.size
 M.setX = M.set.x
 M.setY = M.set.y
-
+M.setImage = M.set.image
 
 return M

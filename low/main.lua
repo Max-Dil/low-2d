@@ -1,11 +1,8 @@
-local solar2d = require 'low.Core.solar2d' -- fun in solar2d
-
-setmetatable(solar2d , { __index = _G } )
-setfenv(1 , solar2d) -- new fenv
-
+--local newfenv = require 'low.Core.solar2d' -- fun in solar2d
+--setmetatable(newfenv , getmetatable(_G) )
+--setfenv(0 , newfenv) -- new fenv
 _G.low = {}
-
-low.device = require 'low.Core.Modules.devace'
+low.device = require 'low.Core.Modules.device'
 low.graphics = require 'low.Core.Modules.graphics'
 low.scene = require 'low.Core.Modules.scene'
 low.event = require 'low.Core.Modules.event'
