@@ -6,10 +6,6 @@ require 'low.global'
 local ob = {}
 function low.main()
     ob['квадрат'] = graphics.rect('fill' , 360 , 400 , 100 , 100)
-    graphics.set.image(ob['квадрат'] , 'test.png')
-    --local s = media.load('test.mp3')
-    --media.play(s)
-    notification.show.up('fhdj')
 end
 
 function low.update()
