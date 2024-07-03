@@ -74,6 +74,38 @@ M.image = function (group , image , basedir , x , y)
     return object
 end
 
+M.print = function (group , text , x , y, font , fontSize)
+    if M.isGroup(group) == false then
+        group , text , x , y , font , fontSize = low._SCENES[low._SCENES['_select']].group , group or 'no text' , text or 0 , x or 0 , y or native.systemFont , font or 20
+    else
+        group , text , x , y , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , font or native.systemFont , fontSize or 20
+    end
+    local object = display.newText(group , text , x , y , font , fontSize)
+    object.low  = {}
+    object.low.type = 'print'
+    return object
+end
+
+M.text = function (group , text , x , y , width , height , font , fontSize)
+    if M.isGroup(group) == false then
+        group , text , x , y ,width , height , font , fontSize = low._SCENES[low._SCENES['_select']].group, group or 'no text' , text or 0 , x or 0 , y or nil , width or nil , height or native.systemFont, font or 25
+    else
+        group , text , x , y ,width , height , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , width or nil , height or nil, font or native.systemFont , fontSize or 25
+    end
+    local object = display.newText(group , text , x , y , width , height , font , fontSize)
+    object.low  = {}
+    object.low.type = 'text'
+    return object
+end
+
+M.group = function ()
+    local object = display.newGroup()
+    low._SCENES[low._SCENES['_select']].group:insert(object)
+    object.low = {}
+    object.low.type = 'group'
+    return object
+end
+
 M.set = {
     image = function (object , image , basedir)
         if basedir then
