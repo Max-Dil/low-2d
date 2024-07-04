@@ -34,7 +34,7 @@ end
 
 M.rect = function (group , render , x , y , width , height , round)
     if M.isGroup(group) == false then
-        group , render , x , y , width , height , round = low._SCENES[low._SCENES['_select']].group , group or 'fill' , width or 0 , x or 0 , y or 50 , width or 50 , height or 0
+        group , render , x , y , width , height , round = low._SCENES[low._SCENES['_select']].group , group or 'fill' , render or 0 , x or 0 , y or 50 , width or 50 , height or 0
     else
         group , render , x , y , width , height , round = group , render or 'fill' , x or 0 , y or 0 , width or 50 , height or 50 , round or 0
     end

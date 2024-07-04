@@ -20,8 +20,8 @@ add the plugin to build.settings:\
 end
 
 M.window = {
-    width = 720,
-    height = 1080,
+    width = display.contentWidth,
+    height = display.contentHeight,
     setSize = function (width , height)
         if width and height then
             if type(width) == 'number' and type(height) == 'number' then
