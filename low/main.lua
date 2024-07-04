@@ -8,6 +8,7 @@ low.scene = require 'low.Core.Modules.scene'
 low.event = require 'low.Core.Modules.event'
 low.loop = require 'low.Core.Modules.loop'
 low.notification = require 'low.Core.Modules.notification'
+low.save = require 'low.Core.Modules.save'
 
 low.json = require 'low.Core.Plugins.json'
 low.mouse = require 'low.Core.Modules.mouse'

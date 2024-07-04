@@ -7,10 +7,17 @@ require 'low.global'
 
 local ob = {}
 function low.main()
-    ob['квадрат'] = graphics.rect('fill' , 360 , 400 , 100 , 100)
+    local posx = save.load('posx' , 0)
+    local posy = save.load('posy' , 0)
+    ob['квадрат'] = graphics.rect('fill' , posx , posy , 100 , 100)
 end
 
 function low.update()
-    graphics.set.x(ob['квадрат'] , low.mouse.x)
-    graphics.set.y(ob['квадрат'] , low.mouse.y)
+    if low.mouse.type == 'drag' then
+        graphics.set.x(ob['квадрат'] , low.mouse.x)
+        graphics.set.y(ob['квадрат'] , low.mouse.y)
+        save.save('posx' , ob['квадрат'].x)
+        save.save('posy' , ob['квадрат'].y)
+    end
+    --print(low.mouse.type)
 end
