@@ -9,7 +9,7 @@ end
 
 M.forAndroid = false
 M.checkAndroid = function ()
-    local loadedOri = package.loaded["plugin.orientation"]
+    local loadedOri = require 'plugin.orientation' or false
         if loadedOri then
         else
             print('\nThe orientation plugin for android was not found\
@@ -100,9 +100,9 @@ M.android = {
 
 
 if M._android == true then
-    local loadedOri = package.loaded["plugin.orientation"]
+    local loadedOri = require 'plugin.orientation' or false
     if loadedOri then
-        M.android.orientation.plugin = require ("plugin.orientation")
+        M.android.orientation.plugin = loadedOri
         M.android.orientation.plugin.init()
     end
 end

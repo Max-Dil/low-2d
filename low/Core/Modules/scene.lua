@@ -18,7 +18,7 @@ M.new = function (name , listener)
     name = name or 'main'
     low._SCENES[name] = {}
     low._SCENES[name].group = display.newGroup()
-    low._SCENES[name].data = {events = {} , timers = {}}
+    low._SCENES[name].data = {events = {} , timers = {} , vars = {}}
     low._SCENES[name].listener = function ()
         
     end
@@ -81,5 +81,37 @@ M.remove = function (name)
 end
 
 M.getScene = function () return low._SCENES['_select'] end
+
+M.var = function (name , value)
+    if type(name) == 'string' and value then
+        low._SCENES[low._SCENES['_select']].data.vars[name] = value
+    end
+end
+
+M.getVar = function (name , defolt)
+    if type(name) == 'string' then
+        return low._SCENES[low._SCENES['_select']].data.vars[name] or (defolt or 0)
+    else
+        return defolt or 0
+    end
+end
+
+M.getVarScene = function (scene , name , defolt)
+    if type(name) == 'string' and type(scene) == 'string' then
+        return low._SCENES[scene].data.vars[name] or (defolt or 0)
+    else
+        return defolt or 0
+    end
+end
+
+M.insert = function (object , scene)
+    if object then
+        if scene then
+            low._SCENES[scene].group:insert(object)
+        else
+            low._SCENES[low._SCENES['_select']].group:insert(object)
+        end
+    end
+end
 
 return M

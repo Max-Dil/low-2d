@@ -24,6 +24,9 @@ M.circle = function (group , render , x , y , radius)
     end
 
     local obj = display.newCircle(group , x , y , radius)
+    obj.setRender = M.setRender
+    obj.setRgbColor = M.setRgbColor
+    obj.setColor = M.setColor
     obj.low = {}
     obj.low.type = 'circle'
     if render ~= nil then
@@ -40,6 +43,9 @@ M.rect = function (group , render , x , y , width , height , round)
     end
     
     local obj = display.newRoundedRect(group , x , y , width , height , round)
+    obj.setRender = M.setRender
+    obj.setRgbColor = M.setRgbColor
+    obj.setColor = M.setColor
     obj.low = {}
     obj.low.type = 'rect'
     if render ~= nil then
@@ -63,15 +69,19 @@ M.image = function (group , image , basedir , x , y)
         end
     end
 
-    local object
+    local object = ''
     if type(basedir) == 'string' then
         object = display.newImage(group , image , basedir , x , y)
     else
         object = display.newImage(group , image , x , y)
     end
+    if object then
+    object.setRgbColor = M.setRgbColor
+    object.setColor = M.setColor
     object.low = {}
     object.low.type = 'image'
     return object
+    end
 end
 
 M.print = function (group , text , x , y, font , fontSize)
@@ -81,6 +91,8 @@ M.print = function (group , text , x , y, font , fontSize)
         group , text , x , y , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , font or native.systemFont , fontSize or 20
     end
     local object = display.newText(group , text , x , y , font , fontSize)
+    object.setRgbColor = M.setRgbColor
+    object.setColor = M.setColor
     object.low  = {}
     object.low.type = 'print'
     return object
@@ -93,6 +105,8 @@ M.text = function (group , text , x , y , width , height , font , fontSize)
         group , text , x , y ,width , height , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , width or nil , height or nil, font or native.systemFont , fontSize or 25
     end
     local object = display.newText(group , text , x , y , width , height , font , fontSize)
+    object.setRgbColor = M.setRgbColor
+    object.setColor = M.setColor
     object.low  = {}
     object.low.type = 'text'
     return object
@@ -139,6 +153,13 @@ M.set = {
                 r[2] , g[2] , b[2] = r[2] or 1 , g[2] or 1 , b[2] or 1
                 obj:setStrokeColor(r[1] , g[1] , b[1] , a[1])
                 obj:setFillColor(r[2] , g[2] , b[2] , a[2])
+            end
+        else
+            r , g , b , a = r or 1 , g or 1 , b or 1 , a or nil
+            if a ~= nil then
+                obj:setFillColor(r , g , b , a)
+            else
+                obj:setFillColor(r , g , b)
             end
         end
         end
@@ -188,6 +209,14 @@ M.set = {
                 r[2] , g[2] , b[2] = r[2] or 255 , g[2] or 255 , b[2] or 255
                 obj:setStrokeColor(r[1]/255 , g[1]/255 , b[1]/255 , a[1]/255)
                 obj:setFillColor(r[2]/255 , g[2]/255 , b[2]/255 , a[2]/255)
+            end
+        else
+            r , g , b , a = r or 1 , g or 1 , b or 1 , a or nil
+            if a ~= nil then
+                obj:setFillColor(r , g , b , a)
+            else
+                print(999)
+                obj:setFillColor(r , g , b)
             end
         end
         end

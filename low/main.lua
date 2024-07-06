@@ -1,6 +1,3 @@
---local newfenv = require 'low.Core.solar2d' -- fun in solar2d
---setmetatable(newfenv , getmetatable(_G) )
---setfenv(0 , newfenv) -- new fenv
 _G.low = {}
 low.device = require 'low.Core.Modules.device'
 low.graphics = require 'low.Core.Modules.graphics'
@@ -9,6 +6,9 @@ low.event = require 'low.Core.Modules.event'
 low.loop = require 'low.Core.Modules.loop'
 low.notification = require 'low.Core.Modules.notification'
 low.save = require 'low.Core.Modules.save'
+low.file = require 'low.Core.Modules.file'
+low.folder = require 'low.Core.Modules.folder'
+low.widget = require 'low.Core.Modules.widget'
 
 low.json = require 'low.Core.Plugins.json'
 low.mouse = require 'low.Core.Modules.mouse'
