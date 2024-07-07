@@ -27,6 +27,10 @@ M.circle = function (group , render , x , y , radius)
     obj.setRender = M.setRender
     obj.setRgbColor = M.setRgbColor
     obj.setColor = M.setColor
+    obj.event = {
+        new = low.event.new,
+        remove = low.event.remove
+    }
     obj.low = {}
     obj.low.type = 'circle'
     if render ~= nil then
@@ -46,6 +50,10 @@ M.rect = function (group , render , x , y , width , height , round)
     obj.setRender = M.setRender
     obj.setRgbColor = M.setRgbColor
     obj.setColor = M.setColor
+    obj.event = {
+        new = low.event.new,
+        remove = low.event.remove
+    }
     obj.low = {}
     obj.low.type = 'rect'
     if render ~= nil then
@@ -78,6 +86,10 @@ M.image = function (group , image , basedir , x , y)
     if object then
     object.setRgbColor = M.setRgbColor
     object.setColor = M.setColor
+    object.event = {
+        new = low.event.new,
+        remove = low.event.remove
+    }
     object.low = {}
     object.low.type = 'image'
     return object
@@ -93,6 +105,10 @@ M.print = function (group , text , x , y, font , fontSize)
     local object = display.newText(group , text , x , y , font , fontSize)
     object.setRgbColor = M.setRgbColor
     object.setColor = M.setColor
+    object.event = {
+        new = low.event.new,
+        remove = low.event.remove
+    }
     object.low  = {}
     object.low.type = 'print'
     return object
@@ -107,6 +123,10 @@ M.text = function (group , text , x , y , width , height , font , fontSize)
     local object = display.newText(group , text , x , y , width , height , font , fontSize)
     object.setRgbColor = M.setRgbColor
     object.setColor = M.setColor
+    object.event = {
+        new = low.event.new,
+        remove = low.event.remove
+    }
     object.low  = {}
     object.low.type = 'text'
     return object

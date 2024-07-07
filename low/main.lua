@@ -9,6 +9,7 @@ low.save = require 'low.Core.Modules.save'
 low.file = require 'low.Core.Modules.file'
 low.folder = require 'low.Core.Modules.folder'
 low.widget = require 'low.Core.Modules.widget'
+low.camera = require 'low.Core.Modules.camera'
 
 low.json = require 'low.Core.Plugins.json'
 low.mouse = require 'low.Core.Modules.mouse'
