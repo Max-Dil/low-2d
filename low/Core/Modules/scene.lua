@@ -20,7 +20,8 @@ M.new = function (name , listener)
     low._SCENES[name].group = display.newGroup()
     low._SCENES[name].data = {events = {} , timers = {} , vars = {}}
     low._SCENES[name].listener = function ()
-        
+    
+    low.scene.area.insert(low.scene.area._area._select , name)
     end
     if listener ~= nil then
         M.listener(name , listener)
@@ -48,7 +49,7 @@ M.show = function (name)
         low._SCENES[name].group.isVisible = true
     end
     if low._SCENES[name] then
-        low._SCENES[name].listener({name = 'snow', error = low._SCENES[name].group.isVisible == true , scene = name})
+        low._SCENES[name].listener({name = 'show', error = low._SCENES[name].group.isVisible == true , scene = name})
     end
 end
 
@@ -113,5 +114,68 @@ M.insert = function (object , scene)
         end
     end
 end
+
+M.area = {
+    _area = {},
+    new = function (name)
+        if name then
+            M.area._area[name] = {
+                scenes = {},
+                data = {}
+            }
+        end
+    end,
+    go = function (name , oneScene)
+        if name then
+            if M.area._area[name] == nil then
+                M.area.new(name)
+            end
+            M.area._area[M.area._area._select].data = low._SCENES
+            for key, value in pairs(low._SCENES) do
+                if key ~= '_select' then
+                    low.scene.hide(key)
+                end
+            end
+            low._SCENES = M.area._area[name].data
+            M.area._area._select = name
+            if M.area._area[name].data['main'] == nil then
+                low.scene.new('main')
+                low._SCENES['_select'] = 'main'
+            end
+
+            if oneScene then
+                low.scene.show(oneScene)
+            else
+                low.scene.show(low._SCENES['_select'])
+            end
+        end
+    end,
+    remove = function (name)
+        if name then
+            for key, value in pairs(M.area._area[name].scenes) do
+                low.scene.remove(key)
+            end
+            M.area._area[name] = nil
+        end
+    end,
+    removeAll = function ()
+        for name, val in pairs(M.area._area) do
+            for key, value in pairs(M.area._area[name].scenes) do
+                low.scene.remove(key)
+            end
+            M.area._area[name] = nil
+        end
+    end,
+    insert = function (name , scene)
+        M.area._area[M.area._area._select].scenes[scene] = nil
+        M.area._area[name].scenes[scene] = low._SCENES[scene]
+    end,
+    load = function (name , listener)
+        local old = M.area._area._select
+        M.area.go(name)
+        listener()
+        M.area.go(old)
+    end
+}
 
 return M

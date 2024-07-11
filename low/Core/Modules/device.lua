@@ -19,6 +19,8 @@ add the plugin to build.settings:\
         end
 end
 
+M.id = system.getInfo('deviceID')
+
 M.window = {
     width = display.contentWidth,
     height = display.contentHeight,

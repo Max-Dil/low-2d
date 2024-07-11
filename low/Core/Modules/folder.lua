@@ -14,7 +14,7 @@ M.new = function (path , basedir)
 end
 
 local remove
-local remove = function (path)
+remove = function (path)
     for file in lfs.dir(path) do
         if file ~= "." and file ~= ".." then
             local filePath = path.."/"..file
