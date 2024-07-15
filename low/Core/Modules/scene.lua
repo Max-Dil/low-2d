@@ -53,10 +53,14 @@ M.show = function (name)
     end
 end
 
-M.go = function (name)
+M.go = function (name , noCreate)
     if name then
         if low._SCENES[name] == nil then
-            M.new(name)
+            if  not noCreate then
+                M.new(name)
+            else
+                low.notification.show.error('\nno scene for scene.go name: \'' .. name ..'\'\n')
+            end
         end
     M.hide(low._SCENES['_select'])
     low._SCENES['_select'] = name
