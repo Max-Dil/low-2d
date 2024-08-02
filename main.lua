@@ -10,9 +10,6 @@ function low.main()
     local posx = save.load('posx' , 0)
     local posy = save.load('posy' , 0)
     ob['квадрат'] = graphics.rect('fill' , posx , posy , 100 , 100)
-    --low.file.write('239048943' , 'glow.txt' , system.DocumentsDirectory)
-    local d = low.file.read('glow.txt' , '*a', system.DocumentsDirectory)
-    print(d)
 end
 
 function low.update()

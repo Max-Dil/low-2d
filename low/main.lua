@@ -9,9 +9,11 @@ low.save = require 'low.Core.Modules.save'
 low.file = require 'low.Core.Modules.file'
 low.folder = require 'low.Core.Modules.folder'
 low.widget = require 'low.Core.Modules.widget'
+low.physics = require 'low.Core.Modules.physics'
 
 low.json = require 'low.Core.Plugins.json'
 low.mouse = require 'low.Core.Modules.mouse'
+low.copyTable = require 'low.Core.Plugins.copytable'
 
 low._SCENES = {}
 low.scene.area._area._select = 'main'

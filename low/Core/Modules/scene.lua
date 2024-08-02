@@ -18,7 +18,7 @@ M.new = function (name , listener)
     name = name or 'main'
     low._SCENES[name] = {}
     low._SCENES[name].group = display.newGroup()
-    low._SCENES[name].data = {events = {} , timers = {} , vars = {}}
+    low._SCENES[name].data = {events = {} , timers = {} , vars = {} , objects = {}}
     low._SCENES[name].listener = function ()
     
     low.scene.area.insert(low.scene.area._area._select , name)
@@ -33,6 +33,7 @@ M.hide = function (name)
     name = name or low._SCENES['_select']
     low.event.clear.scene(low._SCENES['_select'])
     low.loop.pauseScene(name)
+    low.physics.offScene(name)
     if low._SCENES[name] ~= nil then
         low._SCENES[name].group.isVisible = false
     end
@@ -45,6 +46,7 @@ M.show = function (name)
     name = name or low._SCENES['_select']
     low.event.addIsScene(name)
     low.loop.resumeScene(name)
+    low.physics.onScene(name)
     if low._SCENES[name] ~= nil then
         low._SCENES[name].group.isVisible = true
     end

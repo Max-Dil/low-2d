@@ -42,22 +42,7 @@ settings =
 	--
 	plugins =
 	{
-		['plugin.cnkFileManager'] = {publisherId = 'es.cnksoft'},
-		['plugin.pasteboard'] = {publisherId = 'com.coronalabs'},
-		['plugin.animation'] = {publisherId = 'com.coronalabs'},
-		['plugin.utf8'] = {publisherId = 'com.coronalabs'},
-		['plugin.zip'] = {publisherId = 'com.coronalabs'},
-		['plugin.notifications.v2'] = {publisherId = 'com.coronalabs'},
-		['plugin.exportFile'] = {publisherId = 'com.solar2d'},
-		['plugin.nanosvg'] = {publisherId = 'com.coronalabs'},
 		['plugin.orientation'] = {publisherId = 'tech.scotth'},
-		['plugin.memoryBitmap'] = {publisherId = 'com.coronalabs'},
-		['plugin.zeroconf'] = {publisherId = 'com.coronalabs'},
-		['plugin.impack'] = {publisherId = 'com.xibalbastudios'},
-		['plugin.tinyfiledialogs'] = {publisherId = 'com.xibalbastudios'},
-		['plugin.androidFilePicker'] = {publisherId = 'tech.scotth', marketplaceId = '2mfldi'},
-		['plugin.videoEditor'] = {publisherId = 'tech.scotth', marketplaceId = '2mfldi'}
-
 	},
 
 	--

@@ -33,9 +33,11 @@ M.circle = function (group , render , x , y , radius)
     }
     obj.low = {}
     obj.low.type = 'circle'
+    obj.low.physics = {body = {}}
     if render ~= nil then
         M.set.render(obj , render)
     end
+    table.insert(low._SCENES[low._SCENES['_select']].data.objects , obj)
     return obj
 end
 
@@ -56,9 +58,11 @@ M.rect = function (group , render , x , y , width , height , round)
     }
     obj.low = {}
     obj.low.type = 'rect'
+    obj.low.physics = {body = {}}
     if render ~= nil then
         M.set.render(obj , render)
     end
+    table.insert(low._SCENES[low._SCENES['_select']].data.objects , obj)
     return obj
 end
 
@@ -77,22 +81,24 @@ M.image = function (group , image , basedir , x , y)
         end
     end
 
-    local object = ''
+    local obj
     if type(basedir) == 'string' then
-        object = display.newImage(group , image , basedir , x , y)
+        obj = display.newImage(group , image , basedir , x , y)
     else
-        object = display.newImage(group , image , x , y)
+        obj = display.newImage(group , image , x , y)
     end
-    if object then
-    object.setRgbColor = M.setRgbColor
-    object.setColor = M.setColor
-    object.event = {
+    if obj then
+    obj.setRgbColor = M.setRgbColor
+    obj.setColor = M.setColor
+    obj.event = {
         new = low.event.new,
         remove = low.event.remove
     }
-    object.low = {}
-    object.low.type = 'image'
-    return object
+    obj.low = {}
+    obj.low.type = 'image'
+    obj.low.physics = {body = {}}
+    table.insert(low._SCENES[low._SCENES['_select']].data.objects , obj)
+    return obj
     end
 end
 
@@ -102,16 +108,18 @@ M.print = function (group , text , x , y, font , fontSize)
     else
         group , text , x , y , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , font or native.systemFont , fontSize or 20
     end
-    local object = display.newText(group , text , x , y , font , fontSize)
-    object.setRgbColor = M.setRgbColor
-    object.setColor = M.setColor
-    object.event = {
+    local obj = display.newText(group , text , x , y , font , fontSize)
+    obj.setRgbColor = M.setRgbColor
+    obj.setColor = M.setColor
+    obj.event = {
         new = low.event.new,
         remove = low.event.remove
     }
-    object.low  = {}
-    object.low.type = 'print'
-    return object
+    obj.low  = {}
+    obj.low.type = 'print'
+    obj.low.physics = {body = {}}
+    table.insert(low._SCENES[low._SCENES['_select']].data.objects , obj)
+    return obj
 end
 
 M.text = function (group , text , x , y , width , height , font , fontSize)
@@ -120,16 +128,18 @@ M.text = function (group , text , x , y , width , height , font , fontSize)
     else
         group , text , x , y ,width , height , font , fontSize = group or low._SCENES[low._SCENES['_select']].group , text or 'no text' , x or 0 , y or 0 , width or nil , height or nil, font or native.systemFont , fontSize or 25
     end
-    local object = display.newText(group , text , x , y , width , height , font , fontSize)
-    object.setRgbColor = M.setRgbColor
-    object.setColor = M.setColor
-    object.event = {
+    local obj = display.newText(group , text , x , y , width , height , font , fontSize)
+    obj.setRgbColor = M.setRgbColor
+    obj.setColor = M.setColor
+    obj.event = {
         new = low.event.new,
         remove = low.event.remove
     }
-    object.low  = {}
-    object.low.type = 'text'
-    return object
+    obj.low  = {}
+    obj.low.type = 'text'
+    obj.low.physics = {body = {}}
+    table.insert(low._SCENES[low._SCENES['_select']].data.objects , obj)
+    return obj
 end
 
 M.group = function ()
@@ -138,6 +148,16 @@ M.group = function ()
     object.low = {}
     object.low.type = 'group'
     return object
+end
+
+M.remove = function (obj)
+    pcall(function ()
+        obj:removeSelf()
+    end)
+    pcall(function ()
+        display.remove(obj)
+    end)
+    obj = nil
 end
 
 M.set = {
