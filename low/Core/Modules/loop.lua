@@ -1,6 +1,12 @@
 local M = {}
 local numTimers = 0
 
+M.sleep = function(a) 
+local sec = tonumber(os.clock() + a); 
+while (os.clock() < sec) do 
+end 
+end
+
 M.new = function (name , time , listener , iterator)
     pcall(function ()
     if type(name) == 'string' then

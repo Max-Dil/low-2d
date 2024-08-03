@@ -9,6 +9,7 @@ end
 
 M.forAndroid = false
 M.checkAndroid = function ()
+    pcall(function ()
     local loadedOri = require 'plugin.orientation' or false
         if loadedOri then
         else
@@ -17,6 +18,7 @@ no plugin plugin.orientation\
 add the plugin to build.settings:\
 ["plugin.orientation"] = { publisherId="tech.scotth", marketplaceId = "zag4fj"}\n')
         end
+    end)
 end
 
 M.id = system.getInfo('deviceID')
@@ -102,11 +104,13 @@ M.android = {
 
 
 if M._android == true then
+    pcall(function ()
     local loadedOri = require 'plugin.orientation' or false
     if loadedOri then
         M.android.orientation.plugin = loadedOri
         M.android.orientation.plugin.init()
     end
+    end)
 end
 
 M.app = {

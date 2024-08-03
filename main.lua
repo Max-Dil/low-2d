@@ -1,6 +1,14 @@
 -- main.lua
 -- documantation https://low2d.nicepage.io
 
+--[[
+		['plugin.orientation'] = {publisherId = 'tech.scotth'},
+		['plugin.utf8'] = {publisherId = 'com.coronalabs'},
+        ['plugin.exportFile'] = {publisherId = 'com.solar2d'},
+        ["plugin.tinyfiledialogs"] = { publisherId = "com.xibalbastudios",supportedPlatforms = { android = false } },
+        ["plugin.androidFilePicker"] = {publisherId="tech.scotth",marketplaceId = "zag4fj"},
+]] -- plugins in low
+
 -- defolt scene - 'main'
 require 'low.main'
 require 'low.global'
