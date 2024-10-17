@@ -64,10 +64,12 @@ M.go = function (name , noCreate)
                 low.notification.show.error('\nno scene for scene.go name: \'' .. name ..'\'\n')
             end
         end
+    local old = low._SCENES['_select']
     M.hide(low._SCENES['_select'])
     low._SCENES['_select'] = name
     M.show(name)
-    low._SCENES[name].listener({name = 'scene', error = low._SCENES['_select'] == name , scene = name})
+    low._SCENES[old].listener({name = 'go', error = low._SCENES['_select'] == name , scene = name, oldscene = old})
+    low._SCENES[name].listener({name = 'go', error = low._SCENES['_select'] == name , scene = name, oldscene = old})
     end
 end
 
@@ -82,7 +84,7 @@ M.remove = function (name)
         if name == low._SCENES['_select'] then
             M.go('main')
         end
-        low._SCENES[name].listener({name = 'remove', error = low._SCENES[name] == nil , scene = name})
+        low._SCENES[name].listener({name = 'remove', error = false , scene = name})
         low._SCENES[name] = nil
     end
 end
@@ -92,6 +94,12 @@ M.getScene = function () return low._SCENES['_select'] end
 M.var = function (name , value)
     if type(name) == 'string' and value then
         low._SCENES[low._SCENES['_select']].data.vars[name] = value
+    end
+end
+
+M.varScene = function (nameScene , name)
+    if type(name) == 'string' then
+        return low._SCENES[nameScene].data.vars[name]
     end
 end
 
